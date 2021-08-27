@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MazeGame_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MazeGame.js */ \"./src/MazeGame.js\");\nconsole.log(\"webpaoeuoeuoeuck works\"); \n\n\n //Handles all logic for your maze\n\ndocument.addEventListener(\"DOMContentLoaded\", ()=> {\n    const maze = new _MazeGame_js__WEBPACK_IMPORTED_MODULE_0__.default(); //maze is a class that exists inside of MazeGameLogic.js \n\n    maze.startMaze(); \n    console.log(\"DOM is loaded\"); \n})\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MazeGame_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MazeGame.js */ \"./src/MazeGame.js\");\nconsole.log(\"webpaoeuoeuoeuck works\"); \n\n\n //Handles all logic for your maze\n\ndocument.addEventListener(\"DOMContentLoaded\", ()=> {\n    const maze = new _MazeGame_js__WEBPACK_IMPORTED_MODULE_0__.default(); //maze is a class that exists inside of MazeGameLogic.js \n\n    maze.startMaze(); \n})\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
