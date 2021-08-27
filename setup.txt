@@ -1,0 +1,15 @@
+
+
+
+install webpack --> npm install -g webpack webpack-cli 
+
+make a src directory in the top level of file tree. 
+make a dist directiory in the top level of the file tree. 
+
+
+inside src folder -- create an index.js ---> entry file for webpack and all the javascript code 
+
+
+webpack --watch --mode=development will create the dist/main.js file ----> this is everything bundled. 
+
+after running and creating the dist/main.js  --- add dist/main.js to the index.html ---- <script src="dist/main.js" /> 
