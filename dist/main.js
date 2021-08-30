@@ -16,7 +16,17 @@
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n\n\n\nclass Maze {\n    constructor(){\n        this.startMaze = this.startMaze.bind(this); \n    }\n\n    startMaze(){\n        this.buildMaze()\n    }\n    buildMaze() {\n        const testOuterDiv = document.querySelector(\".test-outer-div\")\n        // testOuterDiv.style.display = \"flex\"\n        testOuterDiv.style.position = \"relative\"\n        // testOuterDiv.style.width = \"500px\"\n        for (let i = 0; i < 10; i++) {\n            for (let j = 0; j < 10; j++) {\n                let cell = document.createElement('div')\n                cell.style.position = \"absolute\"\n                cell.style.height = \"50px\";\n                cell.style.width = \"50px\";\n                cell.style.border = \"1px solid black\";\n                cell.style.backgroundColor = \"red\";\n                cell.style.left = j * 50 + \"px\";\n                cell.style.top = i * 50 + \"px\";\n                testOuterDiv.appendChild(cell)\n                console.log(cell.style.top)\n            }\n        }\n    }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Maze);\n\n//# sourceURL=webpack:///./src/MazeGame.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _aStar_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./aStar.js */ \"./src/aStar.js\");\n\n\n\nclass Maze {\n    constructor(){\n        this.startMaze = this.startMaze.bind(this); \n    }\n\n    startMaze(){\n        this.buildMaze()\n    }\n    buildMaze() {\n        const testOuterDiv = document.querySelector(\".test-outer-div\")\n        testOuterDiv.style.position = \"relative\"\n        for (let i = 0; i < 10; i++) {\n            for (let j = 0; j < 10; j++) {\n                let cell = document.createElement('div')\n                cell.style.position = \"absolute\"\n                cell.style.height = \"50px\";\n                cell.style.width = \"50px\";\n                cell.style.border = \"1px solid black\";\n                cell.style.backgroundColor = \"red\";\n                cell.style.left = j * 50 + \"px\";\n                cell.style.top = i * 50 + \"px\";\n                testOuterDiv.appendChild(cell)\n            }\n        }\n\n        (0,_aStar_js__WEBPACK_IMPORTED_MODULE_0__.aStar)(testOuterDiv)\n    }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Maze);\n\n//# sourceURL=webpack:///./src/MazeGame.js?");
+
+/***/ }),
+
+/***/ "./src/aStar.js":
+/*!**********************!*\
+  !*** ./src/aStar.js ***!
+  \**********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"aStar\": () => (/* binding */ aStar)\n/* harmony export */ });\n\n\nconst aStar = (div) => {\n    // console.log(div.children)\n    console.log(div.children.length)\n    for (let i = 0; i < div.childNodes.length; i++) {\n        console.log(i)\n        // console.log(div.childNodes[i])\n        if (div.childNodes[i].style !== undefined) {\n            console.log(div.childNodes[i].style.top)\n        } \n    }\n\n}\n\n//# sourceURL=webpack:///./src/aStar.js?");
 
 /***/ }),
 

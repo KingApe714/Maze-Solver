@@ -1,4 +1,4 @@
-
+import { aStar } from './aStar.js'
 
 
 class Maze {
@@ -11,9 +11,7 @@ class Maze {
     }
     buildMaze() {
         const testOuterDiv = document.querySelector(".test-outer-div")
-        // testOuterDiv.style.display = "flex"
         testOuterDiv.style.position = "relative"
-        // testOuterDiv.style.width = "500px"
         for (let i = 0; i < 10; i++) {
             for (let j = 0; j < 10; j++) {
                 let cell = document.createElement('div')
@@ -25,9 +23,10 @@ class Maze {
                 cell.style.left = j * 50 + "px";
                 cell.style.top = i * 50 + "px";
                 testOuterDiv.appendChild(cell)
-                console.log(cell.style.top)
             }
         }
+
+        aStar(testOuterDiv)
     }
 
 }
