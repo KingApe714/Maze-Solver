@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"aStar\": () => (/* binding */ aStar)\n/* harmony export */ });\n\n\nconst aStar = (grid) => {\n    for (let i = 0; i < grid.length; i++) {\n        for (let j = 0; j < grid[0].length; j++) {\n            console.log(`[${i},${j}] ${grid[i][j].innerHTML}`)\n        }\n    }\n}\n\n//# sourceURL=webpack:///./src/aStar.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"aStar\": () => (/* binding */ aStar)\n/* harmony export */ });\n\nfunction node(value, coordinates) {\n    this.parent = null;\n    this.neighbors = [];\n    this.g = 0;\n    this.h = 0;\n    this.f = 0;\n    this.value = value;\n    this.coordinates = coordinates;\n}\n\nconst aStar = (grid) => {\n    for (let i = 0; i < grid.length; i++) {\n        for (let j = 0; j < grid[0].length; j++) {\n            console.log(`[${i},${j}] ${grid[i][j].innerHTML}`)\n            let arr = []\n            arr.push(grid[i][j])\n            arr.push(new node(grid[i][j].innerHTML, `${i},${j}`))\n            arr[1].neighbors.push()\n            grid[i][j] = arr\n        }\n    }\n\n\n}\n\n//# sourceURL=webpack:///./src/aStar.js?");
 
 /***/ }),
 
