@@ -13,3 +13,16 @@ inside src folder -- create an index.js ---> entry file for webpack and all the 
 webpack --watch --mode=development will create the dist/main.js file ----> this is everything bundled. 
 
 after running and creating the dist/main.js  --- add dist/main.js to the index.html ---- <script src="dist/main.js" /> 
+
+
+
+inside the index.js entry file yo.u can import a class that contains the complete game logic. ---> think object oriented design
+
+this is where you wait until the dom is loaded to start your game / maze 
+
+import Maze from './MazeGame.js' 
+document.addEventListener("DOMContentLoaded", ()=> {
+    const maze = new Maze(); //maze is a class that exists inside of MazeGameLogic.js 
+
+    maze.startMaze(); //this is a method inside of your Maze class that starts running everythng. 
+})
