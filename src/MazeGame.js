@@ -48,14 +48,18 @@ class Maze {
                         endSelected = false;
                         if (start) {
                             grid[parseInt(start[0])][parseInt(start[2])][0].style.backgroundColor = "red"
+                            grid[parseInt(start[0])][parseInt(start[2])][1].startPoint = false;
                         }
+                        grid[i][j][1].startPoint = true
                         start = `${i},${j}`
                     } else if (endSelected) {
                         cell.style.backgroundColor = "yellow"
                         startSelected = false;
                         if (end) {
                             grid[parseInt(end[0])][parseInt(end[2])][0].style.backgroundColor = "red"
+                            grid[parseInt(end[0])][parseInt(end[2])][1].endPoint = false;
                         }
+                        grid[i][j][1].endPoint = true;
                         end = `${i},${j}`
                     }
                 })

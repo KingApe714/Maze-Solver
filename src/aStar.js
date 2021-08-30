@@ -26,7 +26,6 @@ export const aStar = (grid, startPoint, endPoint) => {
     ]
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[0].length; j++) {
-            console.log(`[${i},${j}] ${grid[i][j].innerHTML}`)
             let arr = []
             arr.push(grid[i][j])
             arr.push(new node(grid[i][j].innerHTML, `${i},${j}`))
