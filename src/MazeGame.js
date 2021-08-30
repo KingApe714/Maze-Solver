@@ -68,7 +68,14 @@ class Maze {
             }
             grid.push(row)
         }
+        console.log(start)
+        console.log(end)
         aStar(grid, start, end)
+        // for (let i = 0; i < grid.length; i++) {
+        //     for (let j = 0; j < grid[0].length; j++) {
+        //         grid[i][j][1]
+        //     }
+        // }
     }
 
 }
