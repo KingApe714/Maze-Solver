@@ -8,14 +8,20 @@ class Maze {
 
     startMaze(){
         // starts all the logic you can start manipulating the dom in side of here
-        console.log("Starting maze here " ); 
+        // console.log("Starting maze here " ); 
         const testOuterDiv = document.querySelector(".test-outer-div")
-    const testDiv = document.createElement('div');
-    
-    testDiv.innerHTML = "Hello RYAN THIS IS WORKING";
-    testOuterDiv.appendChild(testDiv)
-    testOuterDiv.innerHTML = "SOMETHING!!"
-    maze.startMaze(); 
+        const testDiv = document.createElement('div');
+        testDiv.className = "testDiv"
+        testDiv.style.backgroundColor = "green";
+        testDiv.style.width = "100px";
+        testDiv.style.height = "100px";
+        testDiv.innerHTML = "Hello RYAN THIS IS WORKING";
+        console.log(testDiv.style)
+
+        testOuterDiv.innerHTML = "SOMETHING!! ELSE"
+        testOuterDiv.appendChild(testDiv)
+        
+        console.log(testOuterDiv.children)
     }
 
 }
