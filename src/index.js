@@ -4,5 +4,4 @@ document.addEventListener("DOMContentLoaded", ()=> {
     const maze = new Maze(); //maze is a class that exists inside of MazeGameLogic.js 
     
     maze.startMaze(); 
-    console.log("DOM is loadedjkewbdfkbsjf"); 
 })

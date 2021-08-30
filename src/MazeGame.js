@@ -7,21 +7,27 @@ class Maze {
     }
 
     startMaze(){
-        // starts all the logic you can start manipulating the dom in side of here
-        // console.log("Starting maze here " ); 
+        this.buildMaze()
+    }
+    buildMaze() {
         const testOuterDiv = document.querySelector(".test-outer-div")
-        const testDiv = document.createElement('div');
-        testDiv.className = "testDiv"
-        testDiv.style.backgroundColor = "green";
-        testDiv.style.width = "100px";
-        testDiv.style.height = "100px";
-        testDiv.innerHTML = "Hello RYAN THIS IS WORKING";
-        console.log(testDiv.style)
-
-        testOuterDiv.innerHTML = "SOMETHING!! ELSE"
-        testOuterDiv.appendChild(testDiv)
-        
-        console.log(testOuterDiv.children)
+        // testOuterDiv.style.display = "flex"
+        testOuterDiv.style.position = "relative"
+        // testOuterDiv.style.width = "500px"
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                let cell = document.createElement('div')
+                cell.style.position = "absolute"
+                cell.style.height = "50px";
+                cell.style.width = "50px";
+                cell.style.border = "1px solid black";
+                cell.style.backgroundColor = "red";
+                cell.style.left = j * 50 + "px";
+                cell.style.top = i * 50 + "px";
+                testOuterDiv.appendChild(cell)
+                console.log(cell.style.top)
+            }
+        }
     }
 
 }
