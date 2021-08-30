@@ -12,7 +12,9 @@ class Maze {
     buildMaze() {
         const testOuterDiv = document.querySelector(".test-outer-div")
         testOuterDiv.style.position = "relative"
+        const grid = []
         for (let i = 0; i < 10; i++) {
+            let row = []
             for (let j = 0; j < 10; j++) {
                 let cell = document.createElement('div')
                 cell.style.position = "absolute"
@@ -22,11 +24,15 @@ class Maze {
                 cell.style.backgroundColor = "red";
                 cell.style.left = j * 50 + "px";
                 cell.style.top = i * 50 + "px";
+                cell.innerHTML = `[${i}, ${j}]`
+                row.push(cell)
                 testOuterDiv.appendChild(cell)
             }
+            grid.push(row)
         }
 
-        aStar(testOuterDiv)
+        // aStar(testOuterDiv)
+        aStar(grid)
     }
 
 }
