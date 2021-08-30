@@ -7,9 +7,12 @@ function node(value, coordinates) {
     this.f = 0;
     this.value = value;
     this.coordinates = coordinates;
+    this.startPoint = false;
+    this.endPoint = false;
+    this.wall = false;
 }
 
-export const aStar = (grid) => {
+export const aStar = (grid, startPoint, endPoint) => {
     //set up neighbor check
     const nCheck = [
         [-1, -1],
@@ -32,17 +35,15 @@ export const aStar = (grid) => {
     }
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[0].length; j++) {
+            //set up neighbors
             nCheck.forEach(n => {
                 let x = n[0] + i;
                 let y = n[1] + j;
+                //handle edge cases
                 if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length) {
                     grid[i][j][1].neighbors.push(grid[x][y])
                 }
             })
-
-            console.log(grid[i][j])
         }
     }
-
-
 }

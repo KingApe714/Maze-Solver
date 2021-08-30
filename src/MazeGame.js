@@ -11,8 +11,24 @@ class Maze {
     }
     buildMaze() {
         const testOuterDiv = document.querySelector(".test-outer-div")
+        const startButton = document.querySelector(".start-button")
+        const endButton = document.querySelector(".end-button")
+
+        let startSelected = false;
+        let endSelected = false;
+        startButton.addEventListener('click', () => {
+            startSelected = true;
+            endSelected = false;
+        })
+        endButton.addEventListener('click', () => {
+            endSelected = true;
+            startSelected = false;
+        })
+
         testOuterDiv.style.position = "relative"
         const grid = []
+        let start = ''
+        let end = ''
         for (let i = 0; i < 10; i++) {
             let row = []
             for (let j = 0; j < 10; j++) {
@@ -25,14 +41,33 @@ class Maze {
                 cell.style.left = j * 50 + "px";
                 cell.style.top = i * 50 + "px";
                 cell.innerHTML = `[${i}, ${j}]`
+
+                cell.addEventListener('click', () => {
+                    if (startSelected) {
+                        cell.style.backgroundColor = "blue"
+                        startSelected = false;
+                        if (start) {
+                            grid[parseInt(start[0])][parseInt(start[2])][0].style.backgroundColor = "red"
+                        }
+                        start = `${i},${j}`
+                    } else if (endSelected) {
+                        cell.style.backgroundColor = "yellow"
+                        endSelected = false;
+                        if (end) {
+                            grid[parseInt(end[0])][parseInt(end[2])][0].style.backgroundColor = "red"
+                        }
+                        end = `${i},${j}`
+                    }
+                })
                 row.push(cell)
                 testOuterDiv.appendChild(cell)
             }
             grid.push(row)
         }
 
-        // aStar(testOuterDiv)
-        aStar(grid)
+        let startPoint = null
+        let endPoint = null
+        aStar(grid, startPoint, endPoint)
     }
 
 }
