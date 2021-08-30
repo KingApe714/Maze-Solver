@@ -45,14 +45,14 @@ class Maze {
                 cell.addEventListener('click', () => {
                     if (startSelected) {
                         cell.style.backgroundColor = "blue"
-                        startSelected = false;
+                        endSelected = false;
                         if (start) {
                             grid[parseInt(start[0])][parseInt(start[2])][0].style.backgroundColor = "red"
                         }
                         start = `${i},${j}`
                     } else if (endSelected) {
                         cell.style.backgroundColor = "yellow"
-                        endSelected = false;
+                        startSelected = false;
                         if (end) {
                             grid[parseInt(end[0])][parseInt(end[2])][0].style.backgroundColor = "red"
                         }
@@ -64,10 +64,7 @@ class Maze {
             }
             grid.push(row)
         }
-
-        let startPoint = null
-        let endPoint = null
-        aStar(grid, startPoint, endPoint)
+        aStar(grid, start, end)
     }
 
 }
