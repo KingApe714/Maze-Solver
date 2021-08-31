@@ -48,11 +48,40 @@ export const setUpGrid = (grid) => {
 }
 
 export const aStar = (startCell, endCell) => {
-    console.log(startCell[1])
-    console.log(endCell[1])
-
+    //node is in position 1
+    gSetter(startCell[1])
 }
 
-function gSetter(startCell) {
+function gSetter(node) {
+    let nodeX = node.coordinates[0]
+    let nodeY = node.coordinates[2]
 
+    node.neighbors.forEach(n => {
+        //node is in position 1 of each n
+        let nX = n[1].coordinates[0]
+        let nY = n[1].coordinates[2]
+        if (nodeX === nX || nodeY === nY) {
+            if (node.g + 10 < n[1].g || n[1].g === 0) {
+                n[1].g = node.g + 10
+            }
+        } else if (nodeX !== nX && nodeY !== nY) {
+            if (node.g + 14 < n[1].g || n[1].g === 0) {
+                n[1].g = node.g + 14
+            }
+        }
+    })
+}
+
+function hSetter(endNode, node) {
+    let endX = endNode.coordinates[0];
+    let endY = endNode.coordinates[2];
+    let nodeX = node.coordinates[0];
+    let nodeY = node.coordinates[2];
+    let deltaX = Math.abs(endX - nodeX);
+    let deltaY = Math.abs(endY - nodeY);
+
+    let adj = Math.abs(deltaX - deltaY);
+    let diag = Math.min(deltaX, deltaY);
+
+    node.h = (adj * 10) + (diag * 14);
 }
