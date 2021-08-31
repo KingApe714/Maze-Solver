@@ -14,8 +14,6 @@ function node(value, coordinates) {
 
 export const setUpGrid = (grid) => {
     //set up neighbor check
-    let s = '';
-    let e = '';
     const nCheck = [
         [-1, -1],
         [-1, 0],
@@ -44,14 +42,13 @@ export const setUpGrid = (grid) => {
                 if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length) {
                     grid[i][j][1].neighbors.push(grid[x][y])
                 }
-                //testing
-                if (grid[i][j][1].startPoint) {
-                    console.log(`start = ${grid[i][j][1].coordinates}`)
-                }
-                if (grid[i][j][1].endPoint) {
-                    console.log(`end = ${grid[i][j][1].coordinates}`)
-                }
             })
         }
     }
+}
+
+export const aStar = (startCell, endCell) => {
+    console.log(startCell[1])
+    console.log(endCell[1])
+
 }

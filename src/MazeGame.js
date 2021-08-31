@@ -1,4 +1,4 @@
-import { setUpGrid } from './aStar.js'
+import { setUpGrid, aStar } from './aStar.js'
 
 
 class Maze {
@@ -30,10 +30,12 @@ class Maze {
         const grid = []
         let start = ''
         let end = ''
+        let startCell, endCell;
         for (let i = 0; i < 10; i++) {
             let row = []
             for (let j = 0; j < 10; j++) {
                 let cell = document.createElement('div')
+                cell.className = "cell";
                 cell.style.position = "absolute"
                 cell.style.height = "50px";
                 cell.style.width = "50px";
@@ -52,6 +54,7 @@ class Maze {
                             grid[parseInt(start[0])][parseInt(start[2])][1].startPoint = false;
                         }
                         grid[i][j][1].startPoint = true
+                        startCell = cell;
                         start = `${i},${j}`
                     } else if (endSelected) {
                         cell.style.backgroundColor = "yellow"
@@ -61,6 +64,7 @@ class Maze {
                             grid[parseInt(end[0])][parseInt(end[2])][1].endPoint = false;
                         }
                         grid[i][j][1].endPoint = true;
+                        endCell = cell;
                         end = `${i},${j}`
                     }
                 })
@@ -74,7 +78,7 @@ class Maze {
         goButton.addEventListener('click', () => {
             console.log(start)
             console.log(end)
-            // aStar(grid, start, end)
+            aStar(startCell, endCell)
         })
     }
 
