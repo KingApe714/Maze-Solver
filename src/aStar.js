@@ -52,3 +52,7 @@ export const aStar = (startCell, endCell) => {
     console.log(endCell[1])
 
 }
+
+function gSetter(startCell) {
+
+}

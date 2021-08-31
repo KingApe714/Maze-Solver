@@ -30,21 +30,15 @@ class Maze {
         const grid = []
         let start = ''
         let end = ''
-        let startCell, endCell;
         for (let i = 0; i < 10; i++) {
             let row = []
             for (let j = 0; j < 10; j++) {
                 let cell = document.createElement('div')
                 cell.className = "cell";
-                cell.style.position = "absolute"
-                cell.style.height = "50px";
-                cell.style.width = "50px";
-                cell.style.border = "1px solid black";
-                cell.style.backgroundColor = "red";
                 cell.style.left = j * 50 + "px";
                 cell.style.top = i * 50 + "px";
                 cell.innerHTML = `[${i}, ${j}]`
-
+                
                 cell.addEventListener('click', () => {
                     if (startSelected) {
                         cell.style.backgroundColor = "blue"
@@ -73,15 +67,17 @@ class Maze {
             }
             grid.push(row)
         }
-
+        
         setUpGrid(grid)
+        let startCell, endCell;
+
         goButton.addEventListener('click', () => {
-            console.log(start)
-            console.log(end)
+            startCell = grid[parseInt(start[0])][parseInt(start[2])]
+            endCell = grid[parseInt(end[0])][parseInt(end[2])]
             aStar(startCell, endCell)
         })
     }
-
+    
 }
 
 export default Maze;
