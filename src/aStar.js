@@ -12,11 +12,7 @@ function node(value, coordinates) {
     this.wall = false;
 }
 
-export const aStar = (grid, startPoint, endPoint) => {
-
-    // console.log(grid[parseInt(startPoint[0])][parseInt(startPoint[2])][1])
-    console.log(startPoint)
-    console.log(endPoint)
+export const setUpGrid = (grid) => {
     //set up neighbor check
     let s = '';
     let e = '';
@@ -48,6 +44,7 @@ export const aStar = (grid, startPoint, endPoint) => {
                 if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length) {
                     grid[i][j][1].neighbors.push(grid[x][y])
                 }
+                //testing
                 if (grid[i][j][1].startPoint) {
                     console.log(`start = ${grid[i][j][1].coordinates}`)
                 }
@@ -55,8 +52,6 @@ export const aStar = (grid, startPoint, endPoint) => {
                     console.log(`end = ${grid[i][j][1].coordinates}`)
                 }
             })
-
-            // console.log(grid[i][j][1])
         }
     }
 }

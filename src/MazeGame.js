@@ -1,4 +1,4 @@
-import { aStar } from './aStar.js'
+import { setUpGrid } from './aStar.js'
 
 
 class Maze {
@@ -13,6 +13,7 @@ class Maze {
         const testOuterDiv = document.querySelector(".test-outer-div")
         const startButton = document.querySelector(".start-button")
         const endButton = document.querySelector(".end-button")
+        const goButton = document.querySelector(".go-button")
 
         let startSelected = false;
         let endSelected = false;
@@ -68,14 +69,13 @@ class Maze {
             }
             grid.push(row)
         }
-        console.log(start)
-        console.log(end)
-        aStar(grid, start, end)
-        // for (let i = 0; i < grid.length; i++) {
-        //     for (let j = 0; j < grid[0].length; j++) {
-        //         grid[i][j][1]
-        //     }
-        // }
+
+        setUpGrid(grid)
+        goButton.addEventListener('click', () => {
+            console.log(start)
+            console.log(end)
+            // aStar(grid, start, end)
+        })
     }
 
 }
