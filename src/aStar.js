@@ -9,7 +9,7 @@ function node(value, coordinates) {
     this.coordinates = coordinates;
     this.startPoint = false;
     this.endPoint = false;
-    this.wall = false;
+    this.isWall = false;
 }
 
 export const setUpGrid = (grid) => {
@@ -47,9 +47,14 @@ export const setUpGrid = (grid) => {
     }
 }
 
+//cells have both the node and the div in them
+//nodes are just the nodes by themselves
 export const aStar = (startCell, endCell) => {
     //node is in position 1
     gSetter(startCell[1])
+    hSetter(endCell[1], startCell[1])
+
+    console.log(startCell[1])
 }
 
 function gSetter(node) {
