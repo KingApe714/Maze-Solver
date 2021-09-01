@@ -18,18 +18,14 @@ class Maze {
         const wallButton = document.querySelector(".wall-button")
         const goButton = document.querySelector(".go-button")
 
-        const body = document.body
-
-        console.log(body)
         
         testOuterDiv.style.position = "relative"
-        const element = document.createElement('div')
+        const element = document.querySelector('.element')
         element.innerHTML = 'test'
-        // element.style.width = "200px"
-        // element.style.height = "200px"
-        element.style.position = "absolute"
+        element.style.width = "200px"
+        element.style.height = "200px"
+        // element.style.position = "absolute"
         console.log(element)
-        body.appendChild(element)
         let moved
         let downListener = () => {
             moved = false
