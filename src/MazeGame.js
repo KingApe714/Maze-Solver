@@ -25,8 +25,8 @@ class Maze {
         testOuterDiv.style.position = "relative"
         const element = document.createElement('div')
         element.innerHTML = 'test'
-        element.style.width = "200px"
-        element.style.height = "200px"
+        // element.style.width = "200px"
+        // element.style.height = "200px"
         element.style.position = "absolute"
         console.log(element)
         body.appendChild(element)
