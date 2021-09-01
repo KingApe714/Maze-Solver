@@ -32,19 +32,19 @@ class Maze {
         body.appendChild(element)
         let moved
         let downListener = () => {
-        moved = false
+            moved = false
         }
         element.addEventListener('mousedown', downListener)
-        let moveListener = () => {
-        moved = true
+            let moveListener = () => {
+            moved = true
         }
         element.addEventListener('mousemove', moveListener)
-        let upListener = () => {
-        if (moved) {
-            console.log('moved')
-        } else {
-            console.log('not moved')
-        }
+            let upListener = () => {
+            if (moved) {
+                console.log('moved')
+            } else {
+                console.log('not moved')
+            }
         }
         element.addEventListener('mouseup', upListener)
 
