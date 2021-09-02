@@ -24,18 +24,14 @@ class Maze {
         element.innerHTML = 'test'
         element.style.width = "200px"
         element.style.height = "200px"
-        // element.style.position = "absolute"
-        console.log(element)
         let moved
-        let downListener = () => {
+        element.addEventListener('mousedown', () => {
             moved = false
-        }
-        element.addEventListener('mousedown', downListener)
-            let moveListener = () => {
+        })
+        element.addEventListener('mousemove', () => {
             moved = true
-        }
-        element.addEventListener('mousemove', moveListener)
-            let upListener = () => {
+        })
+        let upListener = () => {
             if (moved) {
                 console.log('moved')
             } else {
@@ -45,9 +41,9 @@ class Maze {
         element.addEventListener('mouseup', upListener)
 
         // release memory
-        element.removeEventListener('mousedown', downListener)
-        element.removeEventListener('mousemove', moveListener)
-        element.removeEventListener('mouseup', upListener)
+        // element.removeEventListener('mousedown', downListener)
+        // element.removeEventListener('mousemove', moveListener)
+        // element.removeEventListener('mouseup', upListener)
 
         let startSelected = false;
         let endSelected = false;
@@ -67,11 +63,16 @@ class Maze {
             endSelected = false;
             wallSelected = true;
         })
-
+        
         const grid = []
         let start = ''
         let end = ''
         let wall = []
+        
+        let mouseDown = false
+        testOuterDiv.addEventListener(mouseDown, () => {
+            mouseDown = true;
+        })
         for (let i = 0; i < 10; i++) {
             let row = []
             for (let j = 0; j < 10; j++) {
@@ -105,13 +106,38 @@ class Maze {
                     }
                 })
 
+                let moved
+
                 cell.addEventListener('mousedown', () => {
-                    if (wallSelected) {
-                        cell.style.backgroundColor = "black";
-    
-                        grid[i][j][1].isWall = true;
+                    moved = false
+                    cell.style.backgroundColor = "purple";
+                    mouseDown = true;
+                })
+                cell.addEventListener('mousemove', () => {
+                    moved = true
+                    console.log(mouseDown)
+                    if (mouseDown) {
+                        cell.style.backgroundColor = "purple";
                     }
                 })
+                let upListener = () => {
+                    mouseDown = false
+                    if (moved) {
+                        console.log('moved')
+                    } else {
+                        console.log('not moved')
+                        cell.style.backgroundColor = "purple";
+                    }
+                }
+                cell.addEventListener('mouseup', upListener)
+
+                // cell.addEventListener('mousedown', () => {
+                //     if (wallSelected) {
+                //         cell.style.backgroundColor = "purple";
+    
+                //         grid[i][j][1].isWall = true;
+                //     }
+                // })
                 row.push(cell)
                 testOuterDiv.appendChild(cell)
             }
