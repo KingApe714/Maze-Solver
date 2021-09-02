@@ -10,40 +10,13 @@ class Maze {
         this.buildMaze()
     }
     buildMaze() {
-        
-        
         const testOuterDiv = document.querySelector(".test-outer-div")
         const startButton = document.querySelector(".start-button")
         const endButton = document.querySelector(".end-button")
         const wallButton = document.querySelector(".wall-button")
         const goButton = document.querySelector(".go-button")
 
-        
         testOuterDiv.style.position = "relative"
-        const element = document.querySelector('.element')
-        element.innerHTML = 'test'
-        element.style.width = "200px"
-        element.style.height = "200px"
-        let moved
-        element.addEventListener('mousedown', () => {
-            moved = false
-        })
-        element.addEventListener('mousemove', () => {
-            moved = true
-        })
-        let upListener = () => {
-            if (moved) {
-                console.log('moved')
-            } else {
-                console.log('not moved')
-            }
-        }
-        element.addEventListener('mouseup', upListener)
-
-        // release memory
-        // element.removeEventListener('mousedown', downListener)
-        // element.removeEventListener('mousemove', moveListener)
-        // element.removeEventListener('mouseup', upListener)
 
         let startSelected = false;
         let endSelected = false;
@@ -117,7 +90,7 @@ class Maze {
                     cell.style.backgroundColor = "purple";
                     grid[i][j][1].isWall = true;
                     if (!wallCells.includes(grid[i][j])) {
-                        if (startCell && cell !== startCell) {
+                        if ((startCell && cell !== startCell) && (endCell && cell !== endCell)) {
                             wallCells.push(grid[i][j])
                         }
                     }
