@@ -59,23 +59,32 @@ export const aStar = (startCell, endCell, wallCells) => {
     let startNode = startCell[1];
     let endNode = endCell[1];
 
-    while (checkNode !== endNode) {
+    let count = 0
+
+    while (checkNode !== endNode && count <= 20) {
         let checkF = 0;
+        let nodeHolder;
         checkNode.neighbors.forEach(n => {
-            gSetter(n)
-            hSetter(n)
-            n.f = n.g + n.h;
-            if (n.f < checkF || checkF === 0) {
-                checkF = n.f
-                checkNode = n;
+            gSetter(n[1])
+            hSetter(endNode, n[1])
+            n[1].f = n[1].g + n[1].h;
+            if (n[1].f <= checkF || checkF === 0) {
+                checkF = n[1].f
+                if (nodeHolder !== n[1]){
+                    console.log(n[1].coordinates)
+                    nodeHolder = n[1];
+                }
             }
         })
+        checkNode = nodeHolder;
+        count++
+        console.log('checkNode')
         console.log(checkNode)
     }
 }
 
 function gSetter(node) {
-    console.log(node)
+    // console.log(`${node.coordinates} = ${node}`)
     let nodeX = node.coordinates[0]
     let nodeY = node.coordinates[2]
 
