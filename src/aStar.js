@@ -55,32 +55,40 @@ export const aStar = (startCell, endCell, wallCells) => {
     gSetter(startCell[1])
     hSetter(endCell[1], startCell[1])
 
-    let checkNode = startCell[1];
+    let checkCell = startCell;
     let startNode = startCell[1];
     let endNode = endCell[1];
 
+    //using count for testing
     let count = 0
+    let path = [];
 
-    while (checkNode !== endNode && count <= 20) {
+    while (checkCell[1] !== endNode && count <= 20) {
         let checkF = 0;
-        let nodeHolder;
-        checkNode.neighbors.forEach(n => {
+        checkCell[1].neighbors.forEach(n => {
             gSetter(n[1])
             hSetter(endNode, n[1])
             n[1].f = n[1].g + n[1].h;
             if (n[1].f <= checkF || checkF === 0) {
                 checkF = n[1].f
-                if (nodeHolder !== n[1]){
-                    console.log(n[1].coordinates)
-                    nodeHolder = n[1];
+                if (checkCell[1] !== n[1]){
+                    // console.log(n[1].coordinates)
+                    checkCell[1] = n[1];
                 }
             }
+            n[0].style.backgroundColor = "cyan";
         })
-        checkNode = nodeHolder;
+        console.log(checkCell[1].coordinates)
+        path.push(checkCell);
         count++
-        console.log('checkNode')
-        console.log(checkNode)
+        // console.log('checkCell[1]')
+        // console.log(checkCell[1])
     }
+    console.log(path)
+    path.forEach(cell => {
+        console.log(cell[1].coordinates)
+        cell[0].style.backgroundColor = "orange"
+    })
 }
 
 function gSetter(node) {
