@@ -34,6 +34,7 @@ export const setUpGrid = (grid) => {
     }
     for (let i = 0; i < grid.length; i++) {
         for (let j = 0; j < grid[0].length; j++) {
+
             //set up neighbors
             nCheck.forEach(n => {
                 let x = n[0] + i;
@@ -49,11 +50,12 @@ export const setUpGrid = (grid) => {
 
 //cells have both the node and the div in them
 //nodes are just the nodes by themselves
-export const aStar = (startCell, endCell) => {
+export const aStar = (startCell, endCell, wallCells) => {
     //node is in position 1
     gSetter(startCell[1])
     hSetter(endCell[1], startCell[1])
 
+    console.log(wallCells)
     console.log(startCell[1])
 }
 

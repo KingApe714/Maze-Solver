@@ -47,27 +47,23 @@ class Maze {
 
         let startSelected = false;
         let endSelected = false;
-        let wallSelected = false;
         startButton.addEventListener('click', () => {
             startSelected = true;
             endSelected = false;
-            wallSelected = false;
         })
         endButton.addEventListener('click', () => {
             endSelected = true;
             startSelected = false;
-            wallSelected = false;
         })
         wallButton.addEventListener('click', () => {
             startSelected = false;
             endSelected = false;
-            wallSelected = true;
         })
         
         const grid = []
         let start = ''
         let end = ''
-        let wall = []
+        let wallCells = []
         
         let mouseDown = false
         testOuterDiv.addEventListener(mouseDown, () => {
@@ -106,38 +102,31 @@ class Maze {
                     }
                 })
 
-                let moved
-
                 cell.addEventListener('mousedown', () => {
-                    moved = false
-                    cell.style.backgroundColor = "purple";
                     mouseDown = true;
+                    wallHandler()
                 })
                 cell.addEventListener('mousemove', () => {
-                    moved = true
                     console.log(mouseDown)
                     if (mouseDown) {
-                        cell.style.backgroundColor = "purple";
+                        wallHandler()
                     }
                 })
-                let upListener = () => {
-                    mouseDown = false
-                    if (moved) {
-                        console.log('moved')
-                    } else {
-                        console.log('not moved')
-                        cell.style.backgroundColor = "purple";
+                
+                const wallHandler = () => {
+                    cell.style.backgroundColor = "purple";
+                    grid[i][j][1].isWall = true;
+                    if (!wallCells.includes(grid[i][j])) {
+                        if (startCell && cell !== startCell) {
+                            wallCells.push(grid[i][j])
+                        }
                     }
                 }
-                cell.addEventListener('mouseup', upListener)
 
-                // cell.addEventListener('mousedown', () => {
-                //     if (wallSelected) {
-                //         cell.style.backgroundColor = "purple";
-    
-                //         grid[i][j][1].isWall = true;
-                //     }
-                // })
+                cell.addEventListener('mouseup', () => {
+                    mouseDown = false
+                })
+
                 row.push(cell)
                 testOuterDiv.appendChild(cell)
             }
@@ -150,7 +139,7 @@ class Maze {
         goButton.addEventListener('click', () => {
             startCell = grid[parseInt(start[0])][parseInt(start[2])]
             endCell = grid[parseInt(end[0])][parseInt(end[2])]
-            aStar(startCell, endCell)
+            aStar(startCell, endCell, wallCells)
         })
     }
     
