@@ -69,6 +69,7 @@ export const aStar = (startCell, endCell, wallCells) => {
         checkCell[1].neighbors.forEach(n => {
             gSetter(n[1])
             hSetter(endNode, n[1])
+            n[0].innerHTML += `<br> g:${n[1].g} <br> h:${n[1].h}`
             n[1].f = n[1].g + n[1].h;
             if (n[1].f <= checkF || checkF === 0) {
                 checkF = n[1].f
@@ -83,7 +84,7 @@ export const aStar = (startCell, endCell, wallCells) => {
         path.push(checkCell);
         count++
     }
-    
+
     console.log(path)
     path.forEach(cell => {
         console.log(cell[1].coordinates)
@@ -101,11 +102,11 @@ function gSetter(node) {
         let nX = n[1].coordinates[0]
         let nY = n[1].coordinates[2]
         if (nodeX === nX || nodeY === nY) {
-            if (node.g + 10 < n[1].g || n[1].g === 0) {
+            if (!n[1].startPoint && (node.g + 10 < n[1].g || n[1].g === 0)) {
                 n[1].g = node.g + 10
             }
         } else if (nodeX !== nX && nodeY !== nY) {
-            if (node.g + 14 < n[1].g || n[1].g === 0) {
+            if (!n[1].startPoint && (node.g + 14 < n[1].g || n[1].g === 0)) {
                 n[1].g = node.g + 14
             }
         }
