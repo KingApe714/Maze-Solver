@@ -68,12 +68,8 @@ export const aStar = (startCell, endCell, wallCells) => {
     path.push(startCell)
     while (checkCell[1] !== endNode && count <= 20) {
         let checkF = 0;
+        let checkH = 0;
         checkCell[1].neighbors.forEach(n => {
-            if (n[1].coordinates === "2,2") {
-                console.log(n[1])
-                console.log(checkF)
-            }
-            // console.log(n[1].coordinates)
             gSetter(n[1])
             hSetter(endNode, n[1])
             n[1].f = n[1].g + n[1].h;
@@ -81,24 +77,22 @@ export const aStar = (startCell, endCell, wallCells) => {
             if (!visitedCells.includes(n[1].coordinates)) {
                 if (n[1].f < checkF || checkF === 0) {
                     checkF = n[1].f
+                    checkH = n[1].h
                     checkCell = n;
-                    console.log(n[1].coordinates)
-                    console.log(visitedCells.includes(n[1].coordinates))
-                    console.log(visitedCells)
-                } else if (n[1].f === checkF && checkF !== 0) {
-                    
+                } else if (n[1].f === checkF) {
+                    if (n[1].h < checkH) {
+                        checkF = n[1].f
+                        checkH = n[1].h
+                        checkCell = n;
+                    }
                 }
             }
             n[0].style.backgroundColor = "cyan";
         })
         visitedCells.push(checkCell[1].coordinates)
-        console.log(`checkCell = ${checkCell[1].coordinates}`)
         path.push(checkCell);
         count++
     }
-    console.log(visitedCells)
-    console.log('the path')
-    console.log(path)
     path.forEach(cell => {
         console.log(cell[1].coordinates)
         cell[0].style.backgroundColor = "orange"
