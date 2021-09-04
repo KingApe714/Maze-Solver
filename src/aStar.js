@@ -62,24 +62,32 @@ export const aStar = (startCell, endCell, wallCells) => {
     //using count for testing
     let count = 0
     let path = [];
-
     let visitedCells = [];
+
+    visitedCells.push(startCell[1].coordinates)
     path.push(startCell)
     while (checkCell[1] !== endNode && count <= 20) {
         let checkF = 0;
         checkCell[1].neighbors.forEach(n => {
+            if (n[1].coordinates === "2,2") {
+                console.log(n[1])
+                console.log(checkF)
+            }
+            // console.log(n[1].coordinates)
             gSetter(n[1])
             hSetter(endNode, n[1])
             n[1].f = n[1].g + n[1].h;
             n[0].innerHTML += `<br> g:${n[1].g} <br> h:${n[1].h} <br> f:${n[1].f}`
-            if (n[1].f < checkF || checkF === 0) {
-                checkF = n[1].f
-                if (!visitedCells.includes(n[1].coordinates)) {
-                    console.log(n[1].coordinates)
+            if (!visitedCells.includes(n[1].coordinates)) {
+                if (n[1].f < checkF || checkF === 0) {
+                    checkF = n[1].f
                     checkCell = n;
+                    console.log(n[1].coordinates)
+                    console.log(visitedCells.includes(n[1].coordinates))
+                    console.log(visitedCells)
+                } else if (n[1].f === checkF && checkF !== 0) {
+                    
                 }
-            } else if (n[1].f === checkF && checkF !== 0) {
-
             }
             n[0].style.backgroundColor = "cyan";
         })
