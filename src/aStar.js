@@ -75,20 +75,21 @@ export const aStar = (startCell, endCell, wallCells) => {
             if (n[1].f < checkF || checkF === 0) {
                 checkF = n[1].f
                 if (!visitedCells.includes(n[1].coordinates)) {
-                // if (checkCell[1] !== n[1]){
+                    console.log(n[1].coordinates)
                     checkCell = n;
                 }
             } else if (n[1].f === checkF && checkF !== 0) {
-                
+
             }
             n[0].style.backgroundColor = "cyan";
         })
         visitedCells.push(checkCell[1].coordinates)
-        console.log(`checkCell = ${checkCell.coordinates}`)
+        console.log(`checkCell = ${checkCell[1].coordinates}`)
         path.push(checkCell);
         count++
     }
-
+    console.log(visitedCells)
+    console.log('the path')
     console.log(path)
     path.forEach(cell => {
         console.log(cell[1].coordinates)
