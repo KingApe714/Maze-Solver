@@ -17,20 +17,28 @@ class Maze {
 
         testOuterDiv.style.position = "relative"
 
+        //tiles are the divs
+        //nodes are the nodes
+        //and the cells hold both the tiles and the nodes in an array lenth 2
+
         let startSelected = false;
         let endSelected = false;
+        let wallSelected = false;
 
         let startTile, endTile;
-        
+
         startButton.addEventListener('click', () => {
             startSelected = true;
             endSelected = false;
+            wallSelected = false;
         })
         endButton.addEventListener('click', () => {
             endSelected = true;
             startSelected = false;
+            wallSelected = false
         })
         wallButton.addEventListener('click', () => {
+            wallSelected = true
             startSelected = false;
             endSelected = false;
         })
@@ -79,11 +87,11 @@ class Maze {
 
                 tile.addEventListener('mousedown', () => {
                     mouseDown = true;
-                    wallHandler()
+                    if (wallSelected) wallHandler()
                 })
                 tile.addEventListener('mousemove', () => {
                     console.log(mouseDown)
-                    if (mouseDown) {
+                    if (mouseDown && wallSelected) {
                         wallHandler()
                     }
                 })
@@ -115,6 +123,8 @@ class Maze {
             endTile = grid[parseInt(end[0])][parseInt(end[2])]
             aStar(startTile, endTile, wallCells)
         })
+
+        console.log(grid)
     }
     
 }
