@@ -70,7 +70,11 @@ export const aStar = (startCell, endCell, wallCells) => {
     while (checkCell[1] !== endNode && count <= 20) {
 
         checkQueue.sort((first, second) => {
-            return first[1].f - second[1].f
+            if (first.f !== second.f) {
+                return first[1].f - second[1].f
+            } else {
+                return first[1].h - second[1].h
+            }
         })
 
         console.log(`checkQueue~!! currentCell = ${checkQueue[0][1].coordinates}`)
