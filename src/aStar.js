@@ -67,7 +67,7 @@ export const aStar = (startCell, endCell, wallCells) => {
 
     visitedCells.push(startCell[1].coordinates)
     path.push(startCell)
-    while (checkCell[1] !== endNode && count <= 50) {
+    while (checkCell[1] !== endNode && count <= 150) {
 
         checkQueue.sort((first, second) => {
             if (first.f !== second.f) {
