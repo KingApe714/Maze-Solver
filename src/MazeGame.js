@@ -1,6 +1,5 @@
 import { setUpGrid, aStar } from './aStar.js'
 
-
 class Maze {
     constructor(){
         this.startMaze = this.startMaze.bind(this); 
@@ -20,6 +19,9 @@ class Maze {
 
         let startSelected = false;
         let endSelected = false;
+
+        let startTile, endTile;
+        
         startButton.addEventListener('click', () => {
             startSelected = true;
             endSelected = false;
@@ -45,41 +47,41 @@ class Maze {
         for (let i = 0; i < 10; i++) {
             let row = []
             for (let j = 0; j < 10; j++) {
-                let cell = document.createElement('div')
-                cell.className = "cell";
-                cell.style.left = j * 50 + "px";
-                cell.style.top = i * 50 + "px";
-                cell.innerHTML = `[${i}, ${j}]`
+                let tile = document.createElement('div')
+                tile.className = "tile";
+                tile.style.left = j * 50 + "px";
+                tile.style.top = i * 50 + "px";
+                tile.innerHTML = `[${i}, ${j}]`
                 
-                cell.addEventListener('click', () => {
+                tile.addEventListener('click', () => {
                     if (startSelected) {
-                        cell.style.backgroundColor = "blue"
+                        tile.style.backgroundColor = "blue"
                         endSelected = false;
                         if (start) {
                             grid[parseInt(start[0])][parseInt(start[2])][0].style.backgroundColor = "red"
                             grid[parseInt(start[0])][parseInt(start[2])][1].startPoint = false;
                         }
                         grid[i][j][1].startPoint = true
-                        startCell = cell;
+                        startTile = tile;
                         start = `${i},${j}`
                     } else if (endSelected) {
-                        cell.style.backgroundColor = "yellow"
+                        tile.style.backgroundColor = "yellow"
                         startSelected = false;
                         if (end) {
                             grid[parseInt(end[0])][parseInt(end[2])][0].style.backgroundColor = "red"
                             grid[parseInt(end[0])][parseInt(end[2])][1].endPoint = false;
                         }
                         grid[i][j][1].endPoint = true;
-                        endCell = cell;
+                        endTile = tile;
                         end = `${i},${j}`
                     }
                 })
 
-                cell.addEventListener('mousedown', () => {
+                tile.addEventListener('mousedown', () => {
                     mouseDown = true;
                     wallHandler()
                 })
-                cell.addEventListener('mousemove', () => {
+                tile.addEventListener('mousemove', () => {
                     console.log(mouseDown)
                     if (mouseDown) {
                         wallHandler()
@@ -87,32 +89,31 @@ class Maze {
                 })
                 
                 const wallHandler = () => {
-                    cell.style.backgroundColor = "purple";
+                    tile.style.backgroundColor = "purple";
                     grid[i][j][1].isWall = true;
                     if (!wallCells.includes(grid[i][j])) {
-                        if ((startCell && cell !== startCell) && (endCell && cell !== endCell)) {
+                        if ((startTile && tile !== startTile) && (endTile && tile !== endTile)) {
                             wallCells.push(grid[i][j])
                         }
                     }
                 }
 
-                cell.addEventListener('mouseup', () => {
+                tile.addEventListener('mouseup', () => {
                     mouseDown = false
                 })
 
-                row.push(cell)
-                testOuterDiv.appendChild(cell)
+                row.push(tile)
+                testOuterDiv.appendChild(tile)
             }
             grid.push(row)
         }
         
         setUpGrid(grid)
-        let startCell, endCell;
 
         goButton.addEventListener('click', () => {
-            startCell = grid[parseInt(start[0])][parseInt(start[2])]
-            endCell = grid[parseInt(end[0])][parseInt(end[2])]
-            aStar(startCell, endCell, wallCells)
+            startTile = grid[parseInt(start[0])][parseInt(start[2])]
+            endTile = grid[parseInt(end[0])][parseInt(end[2])]
+            aStar(startTile, endTile, wallCells)
         })
     }
     

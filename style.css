@@ -2,7 +2,7 @@
     color: blue;
 }
 
-.cell {
+.tile {
     background-color: red;
     position: absolute;
     height: 50px;
