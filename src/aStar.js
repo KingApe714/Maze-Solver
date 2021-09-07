@@ -70,7 +70,7 @@ export const aStar = (startCell, endCell, wallCells) => {
     while (checkCell[1] !== endNode && count <= 150) {
 
         checkQueue.sort((first, second) => {
-            if (first.f !== second.f) {
+            if (first[1].f !== second[1].f) {
                 return first[1].f - second[1].f
             } else {
                 return first[1].h - second[1].h
