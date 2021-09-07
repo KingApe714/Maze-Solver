@@ -90,7 +90,6 @@ class Maze {
                     if (wallSelected) wallHandler()
                 })
                 tile.addEventListener('mousemove', () => {
-                    console.log(mouseDown)
                     if (mouseDown && wallSelected) {
                         wallHandler()
                     }

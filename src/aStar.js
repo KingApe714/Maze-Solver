@@ -59,15 +59,13 @@ export const aStar = (startCell, endCell, wallCells) => {
     let startNode = startCell[1];
     let endNode = endCell[1];
 
-    //using count for testing
-    let count = 0
     let path = [];
     let visitedCells = [];
     let checkQueue = [checkCell];
 
     visitedCells.push(startCell[1].coordinates)
     path.push(startCell)
-    while (checkCell[1] !== endNode && count <= 150) {
+    while (checkCell[1] !== endNode) {
 
         checkQueue.sort((first, second) => {
             if (first[1].f !== second[1].f) {
@@ -77,14 +75,12 @@ export const aStar = (startCell, endCell, wallCells) => {
             }
         })
 
-        console.log(`checkQueue~!! currentCell = ${checkQueue[0][1].coordinates}`)
-        console.log(visitedCells)
-        checkQueue.forEach(el => {
-            console.log(`${el[1].coordinates} ${el[1].f}`)
-        })
+        // console.log(`checkQueue~!! currentCell = ${checkQueue[0][1].coordinates}`)
+        // console.log(visitedCells)
+        // checkQueue.forEach(el => {
+        //     console.log(`${el[1].coordinates} f = ${el[1].f} h = ${el[1].h}`)
+        // })
 
-        let checkF = 0;
-        let checkH = 0;
         checkCell = checkQueue.shift()
         checkCell[1].neighbors.forEach(n => {
             if (!n[1].isWall) {
@@ -94,29 +90,35 @@ export const aStar = (startCell, endCell, wallCells) => {
             n[1].f = n[1].g + n[1].h;
             n[0].innerHTML += `<br> g:${n[1].g} <br> h:${n[1].h} <br> f:${n[1].f}`
             if (!visitedCells.includes(n[1].coordinates) && !checkQueue.includes(n) && !n[1].isWall) {
-                // if (n[1].f < checkF || checkF === 0) {
-                //     checkF = n[1].f
-                //     checkH = n[1].h
-                //     checkQueue.push(n);
-                // } else if (n[1].f === checkF) {
-                //     if (n[1].h <= checkH) {
-                //         checkF = n[1].f
-                //         checkH = n[1].h
-                //         checkQueue.push(n);
-                //     }
-                // }
                 checkQueue.push(n)
             }
             if (!n[1].isWall) n[0].style.backgroundColor = "cyan";
         })
         if (!visitedCells.includes(checkCell[1].coordinates)) visitedCells.push(checkCell[1].coordinates)
         path.push(checkCell);
-        count++
     }
     path.forEach(cell => {
         // console.log(cell[1].coordinates)
         cell[0].style.backgroundColor = "orange"
     })
+
+    highlightPath(startCell, endCell)
+}
+
+function highlightPath(startCell, endCell) {
+    let currentCell = endCell;
+    while (currentCell !== startCell) {
+        currentCell[0].style.backgroundColor = "white"
+        let cellCheck = null;
+        currentCell[1].neighbors.forEach(n => {
+            console.log(cellCheck)
+            if (!n[1].isWall && (cellCheck === null || cellCheck[1].g > n[1].g)) {
+                cellCheck = n
+            }
+        })
+        currentCell = cellCheck;
+    }
+    startCell[0].style.backgroundColor = "white"
 }
 
 function gSetter(node) {
