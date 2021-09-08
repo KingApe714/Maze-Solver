@@ -102,7 +102,13 @@ export const aStar = (startCell, endCell) => {
 function highlightPath(startCell, endCell) {
     let currentCell = endCell;
     while (currentCell !== startCell) {
-        currentCell[0].style.backgroundColor = "white"
+        let innerTile = document.createElement('div')
+        innerTile.className = "inner-tile"
+        // innerTile.style.left = j * 45 + "px";
+        // innerTile.style.top = i * 45 + "px";
+        innerTile.style.backgroundColor = "white"
+        currentCell[0].appendChild(innerTile)
+        // currentCell[0].style.backgroundColor = "white"
 
         if (currentCell[0].innerHTML[currentCell[0].innerHTML.length - 1] == ']') currentCell[0].innerHTML += `g = ${currentCell[1].g}`
 

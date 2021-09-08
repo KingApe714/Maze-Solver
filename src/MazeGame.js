@@ -75,8 +75,8 @@ class Maze {
                 
                 let innerTile = document.createElement('div')
                 innerTile.className = "inner-tile"
-                innerTile.style.left = j * 45 + "px";
-                innerTile.style.top = i * 45 + "px";
+                // innerTile.style.left = j * 45 + "px";
+                // innerTile.style.top = i * 45 + "px";
 
                 tile.addEventListener('click', () => {
                     if (startSelected) {
