@@ -75,12 +75,6 @@ export const aStar = (startCell, endCell, wallCells) => {
             }
         })
 
-        // console.log(`checkQueue~!! currentCell = ${checkQueue[0][1].coordinates}`)
-        // console.log(visitedCells)
-        // checkQueue.forEach(el => {
-        //     console.log(`${el[1].coordinates} f = ${el[1].f} h = ${el[1].h}`)
-        // })
-
         checkCell = checkQueue.shift()
         checkCell[1].neighbors.forEach(n => {
             if (!n[1].isWall) {
