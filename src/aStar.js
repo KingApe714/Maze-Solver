@@ -82,7 +82,7 @@ export const aStar = (startCell, endCell, wallCells) => {
             }
 
             n[1].f = n[1].g + n[1].h;
-            n[0].innerHTML += `<br> g:${n[1].g} <br> h:${n[1].h} <br> f:${n[1].f}`
+            // n[0].innerHTML += `<br> g:${n[1].g} <br> h:${n[1].h} <br> f:${n[1].f}`
 
             if (!visitedCells.includes(n[1].coordinates) && !checkQueue.includes(n) && !n[1].isWall) {
                 checkQueue.push(n)

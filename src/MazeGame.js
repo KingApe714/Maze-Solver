@@ -62,26 +62,35 @@ class Maze {
                 // tile.innerHTML = `[${i}, ${j}]`
                 
                 let innerTile = document.createElement('div')
-                innerTile.className = "innerTile"
+                innerTile.className = "inner-tile"
+                innerTile.style.left = j * 45 + "px";
+                innerTile.style.top = i * 45 + "px";
 
                 tile.addEventListener('click', () => {
                     if (startSelected) {
-                        tile.style.backgroundColor = "blue"
+                        innerTile.style.backgroundColor = "blue"
+
+                        tile.appendChild(innerTile)
+                        
                         endSelected = false;
                         if (start) {
                             let [sX, sY] = start.split(',')
                             grid[sX][sY][0].style.backgroundColor = "red"
+                            grid[sX][sY][0].removeChild(grid[sX][sY][0].lastElementChild)
                             grid[sX][sY][1].startPoint = false;
                         }
                         grid[i][j][1].startPoint = true
                         startTile = tile;
                         start = `${i},${j}`
                     } else if (endSelected) {
-                        tile.style.backgroundColor = "yellow"
+                        innerTile.style.backgroundColor = "yellow"
+
+                        tile.appendChild(innerTile)
+
                         startSelected = false;
                         if (end) {
                             let [eX, eY] = end.split(',')
-                            grid[eX][eY][0].style.backgroundColor = "red"
+                            grid[eX][eY][0].removeChild(grid[sX][sY][0].lastElementChild)
                             grid[eX][eY][1].endPoint = false;
                         }
                         grid[i][j][1].endPoint = true;
@@ -101,7 +110,12 @@ class Maze {
                 })
                 
                 const wallHandler = () => {
-                    tile.style.backgroundColor = "purple";
+                    let innerTile = document.createElement('div')
+                    innerTile.className = "inner-tile"
+                    innerTile.style.left = j * 45 + "px";
+                    innerTile.style.top = i * 45 + "px";
+                    innerTile.style.backgroundColor = "purple";
+                    if (!grid[i][j][0].hasChildNodes()) grid[i][j][0].appendChild(innerTile)
                     grid[i][j][1].isWall = true;
                     if (!wallCells.includes(grid[i][j])) {
                         if ((startTile && tile !== startTile) && (endTile && tile !== endTile)) {
