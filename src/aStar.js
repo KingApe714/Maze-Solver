@@ -62,15 +62,10 @@ export const aStar = (startCell, endCell, wallCells) => {
     let path = [];
     let visitedCells = [];
     let checkQueue = [checkCell];
-    
-    let count = 0
 
     visitedCells.push(startCell[1].coordinates)
     path.push(startCell)
-    while (checkCell[1] !== endNode && count !== 30) {
-
-        // console.log(`count = ${count}`)
-
+    while (checkCell[1] !== endNode) {
         checkQueue.sort((first, second) => {
             if (first[1].f !== second[1].f) {
                 return first[1].f - second[1].f
@@ -85,9 +80,10 @@ export const aStar = (startCell, endCell, wallCells) => {
                 gSetter(n[1])
                 hSetter(endNode, n[1])
             }
-            // console.log(`${n[1].coordinates}.h = ${n[1].h}`)
+
             n[1].f = n[1].g + n[1].h;
             n[0].innerHTML += `<br> g:${n[1].g} <br> h:${n[1].h} <br> f:${n[1].f}`
+
             if (!visitedCells.includes(n[1].coordinates) && !checkQueue.includes(n) && !n[1].isWall) {
                 checkQueue.push(n)
             }
@@ -95,12 +91,8 @@ export const aStar = (startCell, endCell, wallCells) => {
         })
         if (!visitedCells.includes(checkCell[1].coordinates)) visitedCells.push(checkCell[1].coordinates)
         path.push(checkCell);
-
-        count++
-        // console.log(count)
     }
     path.forEach(cell => {
-        // console.log(cell[1].coordinates)
         cell[0].style.backgroundColor = "orange"
     })
 
@@ -109,8 +101,7 @@ export const aStar = (startCell, endCell, wallCells) => {
 
 function highlightPath(startCell, endCell) {
     let currentCell = endCell;
-    let count = 0
-    while (currentCell !== startCell && count !== 30) {
+    while (currentCell !== startCell) {
         currentCell[0].style.backgroundColor = "white"
 
         if (currentCell[0].innerHTML[currentCell[0].innerHTML.length - 1] == ']') currentCell[0].innerHTML += `g = ${currentCell[1].g}`
@@ -123,25 +114,14 @@ function highlightPath(startCell, endCell) {
             }
         })
         currentCell = cellCheck;
-
-        count++
-
     }
     startCell[0].style.backgroundColor = "white"
 }
 
 function gSetter(node) {
-    // console.log(`${node.coordinates} = ${node}`)
-    // let nodeX = node.coordinates[0]
-    // let nodeY = node.coordinates[2]
-
     let [nodeX, nodeY] = node.coordinates.split(',')
 
     node.neighbors.forEach(n => {
-        //node is in position 1 of each n
-        // let nX = n[1].coordinates[0]
-        // let nY = n[1].coordinates[2]
-
         let [nX, nY] = n[1].coordinates.split(',')
 
         if (n[1].g === null) n[1].g = 0
@@ -159,30 +139,14 @@ function gSetter(node) {
 }
 
 function hSetter(endNode, node) {
-    // let endX = endNode.coordinates[0];
-    // let endY = endNode.coordinates[2];
-
     let [endX, endY] = endNode.coordinates.split(',')
-    // let nodeX = node.coordinates[0];
-    // let nodeY = node.coordinates[2];
-
-    // console.log(endX)
-    // console.log(endY)
-    
     let [nodeX, nodeY] = node.coordinates.split(',')
-
-    // console.log(node.value)
-    // console.log(parseInt(nodeX))
 
     let deltaX = Math.abs(endX - nodeX);
     let deltaY = Math.abs(endY - nodeY);
-
-    // console.log(deltaX)
 
     let adj = Math.abs(deltaX - deltaY);
     let diag = Math.min(deltaX, deltaY);
 
     node.h = (adj * 10) + (diag * 14);
-
-    // console.log(node.h)
 }
