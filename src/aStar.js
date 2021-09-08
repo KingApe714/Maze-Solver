@@ -50,7 +50,7 @@ export const setUpGrid = (grid) => {
 
 //cells have both the node and the div in them
 //nodes are just the nodes by themselves
-export const aStar = (startCell, endCell, wallCells) => {
+export const aStar = (startCell, endCell) => {
     //node is in position 1
     gSetter(startCell[1])
     hSetter(endCell[1], startCell[1])

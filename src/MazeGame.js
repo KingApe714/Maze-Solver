@@ -13,6 +13,7 @@ class Maze {
         const startButton = document.querySelector(".start-button")
         const endButton = document.querySelector(".end-button")
         const wallButton = document.querySelector(".wall-button")
+        const removeButton = document.querySelector(".remove-wall-button")
         const goButton = document.querySelector(".go-button")
 
         testOuterDiv.style.position = "relative"
@@ -24,6 +25,7 @@ class Maze {
         let startSelected = false;
         let endSelected = false;
         let wallSelected = false;
+        let removeSelected = false
 
         let startTile, endTile;
 
@@ -31,18 +33,28 @@ class Maze {
             startSelected = true;
             endSelected = false;
             wallSelected = false;
+            removeSelected = false;
         })
         endButton.addEventListener('click', () => {
             endSelected = true;
             startSelected = false;
-            wallSelected = false
+            wallSelected = false;
+            removeSelected = false;
         })
         wallButton.addEventListener('click', () => {
             wallSelected = true
+            removeSelected = false;
             startSelected = false;
             endSelected = false;
         })
         
+        removeButton.addEventListener('click', () => {
+            removeSelected = true;
+            wallSelected = false;
+            startSelected = false;
+            endSelected = false;
+        })
+
         const grid = []
         let start = ''
         let end = ''
@@ -101,11 +113,19 @@ class Maze {
 
                 tile.addEventListener('mousedown', () => {
                     mouseDown = true;
-                    if (wallSelected) wallHandler()
+                    if (wallSelected) {
+                        wallHandler()
+                    } else if (removeSelected) {
+                        removeHandler()
+                    }
                 })
                 tile.addEventListener('mousemove', () => {
-                    if (mouseDown && wallSelected) {
-                        wallHandler()
+                    if (mouseDown) {
+                        if (wallSelected) {
+                            wallHandler()
+                        } else if (removeSelected) {
+                            removeHandler()
+                        }
                     }
                 })
                 
@@ -115,12 +135,21 @@ class Maze {
                     innerTile.style.left = j * 45 + "px";
                     innerTile.style.top = i * 45 + "px";
                     innerTile.style.backgroundColor = "purple";
-                    if (!grid[i][j][0].hasChildNodes()) grid[i][j][0].appendChild(innerTile)
-                    grid[i][j][1].isWall = true;
-                    if (!wallCells.includes(grid[i][j])) {
-                        if ((startTile && tile !== startTile) && (endTile && tile !== endTile)) {
-                            wallCells.push(grid[i][j])
-                        }
+                    if (!grid[i][j][0].hasChildNodes()) {
+                        grid[i][j][0].appendChild(innerTile);
+                        grid[i][j][1].isWall = true;
+                    }
+                    // if (!wallCells.includes(grid[i][j])) {
+                    //     if ((startTile && tile !== startTile) && (endTile && tile !== endTile)) {
+                    //         wallCells.push(grid[i][j]);
+                    //     }
+                    // }
+                }
+
+                const removeHandler = () => {
+                    if (grid[i][j][0].hasChildNodes()) {
+                        grid[i][j][0].removeChild(grid[i][j][0].lastElementChild)
+                        grid[i][j][1].isWall = false;
                     }
                 }
 
