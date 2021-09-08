@@ -59,15 +59,17 @@ class Maze {
                 tile.className = "tile";
                 tile.style.left = j * 45 + "px";
                 tile.style.top = i * 45 + "px";
-                tile.innerHTML = `[${i}, ${j}]`
+                // tile.innerHTML = `[${i}, ${j}]`
                 
+                let innerTile = document.createElement('div')
+                innerTile.className = "innerTile"
+
                 tile.addEventListener('click', () => {
                     if (startSelected) {
                         tile.style.backgroundColor = "blue"
                         endSelected = false;
                         if (start) {
                             let [sX, sY] = start.split(',')
-                            console.log(`xS = ${sX} xY = ${sY}`)
                             grid[sX][sY][0].style.backgroundColor = "red"
                             grid[sX][sY][1].startPoint = false;
                         }
