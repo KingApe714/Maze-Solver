@@ -87,13 +87,13 @@ export const aStar = (startCell, endCell) => {
             if (!visitedCells.includes(n[1].coordinates) && !checkQueue.includes(n) && !n[1].isWall) {
                 checkQueue.push(n)
             }
-            if (!n[1].isWall) n[0].style.backgroundColor = "cyan";
+            if (!n[1].isWall) n[0].style.backgroundColor = "#68de7c";
         })
         if (!visitedCells.includes(checkCell[1].coordinates)) visitedCells.push(checkCell[1].coordinates)
         path.push(checkCell);
     }
     path.forEach(cell => {
-        cell[0].style.backgroundColor = "orange"
+        cell[0].style.backgroundColor = "#1ed14b"
     })
 
     highlightPath(startCell, endCell)

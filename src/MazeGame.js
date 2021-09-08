@@ -80,14 +80,14 @@ class Maze {
 
                 tile.addEventListener('click', () => {
                     if (startSelected) {
-                        innerTile.style.backgroundColor = "blue"
+                        innerTile.style.backgroundColor = "#d63638"
 
                         tile.appendChild(innerTile)
                         
                         endSelected = false;
                         if (start) {
                             let [sX, sY] = start.split(',')
-                            grid[sX][sY][0].style.backgroundColor = "red"
+                            // grid[sX][sY][0].style.backgroundColor = "red"
                             grid[sX][sY][0].removeChild(grid[sX][sY][0].lastElementChild)
                             grid[sX][sY][1].startPoint = false;
                         }
@@ -102,7 +102,7 @@ class Maze {
                         startSelected = false;
                         if (end) {
                             let [eX, eY] = end.split(',')
-                            grid[eX][eY][0].removeChild(grid[sX][sY][0].lastElementChild)
+                            grid[eX][eY][0].removeChild(grid[eX][eY][0].lastElementChild)
                             grid[eX][eY][1].endPoint = false;
                         }
                         grid[i][j][1].endPoint = true;
@@ -134,7 +134,7 @@ class Maze {
                     innerTile.className = "inner-tile"
                     innerTile.style.left = j * 45 + "px";
                     innerTile.style.top = i * 45 + "px";
-                    innerTile.style.backgroundColor = "purple";
+                    innerTile.style.backgroundColor = "#2c3338";
                     if (!grid[i][j][0].hasChildNodes()) {
                         grid[i][j][0].appendChild(innerTile);
                         grid[i][j][1].isWall = true;

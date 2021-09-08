@@ -13,7 +13,7 @@ button {
 .tile {
     cursor: pointer;
     z-index: 1;
-    background-color: red;
+    background-color: #3582c4;
     position: absolute;
     height: 45px;
     width: 45px;
