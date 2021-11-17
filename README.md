@@ -72,7 +72,7 @@ export const aStar = (startCell, endCell) => {
 Users freely builds the path that they want in order to challenge the algorithm. Place the start and end points wherever they
 want, and build walls anywhere around them
 
-[build wall image](https://user-images.githubusercontent.com/74022542/142084824-e859f9a1-5c91-412f-924c-5ea93ba35d4e.png)
+![build wall image](https://user-images.githubusercontent.com/74022542/142084824-e859f9a1-5c91-412f-924c-5ea93ba35d4e.png)
 
 **Shortest Path**
 
@@ -80,4 +80,4 @@ After the start point, end point, and the walls are built, the user then clicks 
 the A-Star algorithm. The cells that are turned green are the cells that were checked but not chosen to be a part of the path.
 The whitened cells make the path that show the shortest path.
 
-[A-Star image](https://user-images.githubusercontent.com/74022542/142085297-1cc8e676-9834-4c67-914a-6e61edef8b78.png)
+![A-Star image](https://user-images.githubusercontent.com/74022542/142085297-1cc8e676-9834-4c67-914a-6e61edef8b78.png)
