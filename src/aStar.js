@@ -87,7 +87,9 @@ export const aStar = (startCell, endCell) => {
             if (!visitedCells.includes(n[1].coordinates) && !checkQueue.includes(n) && !n[1].isWall) {
                 checkQueue.push(n)
             }
-            if (!n[1].isWall) n[0].style.backgroundColor = "#68de7c";
+            if (!n[1].isWall) {
+                n[0].style.backgroundColor = "#68de7c";
+            }
         })
         if (!visitedCells.includes(checkCell[1].coordinates)) visitedCells.push(checkCell[1].coordinates)
         path.push(checkCell);
